@@ -1,8 +1,3 @@
-// const roomSize = document.getElementById('room-size') as HTMLInputElement;
-// const capacity = document.getElementById('capacity') as HTMLInputElement;
-// const poolSize = document.getElementById('pool-size') as HTMLInputElement;
-// const waterTemp = document.getElementById('watertemp') as HTMLInputElement;
-// const btn = document.querySelector('button') as HTMLButtonElement;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -18,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var roomSize = document.getElementById('room-size');
+var capacity = document.getElementById('capacity');
+var poolSize = document.getElementById('pool-size');
+var waterTemp = document.getElementById('watertemp');
+var btn = document.querySelector('button');
 var Hotel = /** @class */ (function () {
     function Hotel(name, address, stars) {
         this.rooms = [];
@@ -38,7 +38,15 @@ var Hotel = /** @class */ (function () {
             }
         }
     };
+    //if comfort is true only rooms that are higer than level 15 will be printed 
     Hotel.prototype.printData = function (onlyComfort) {
+        console.log("Welcome to ".concat(this.stars, " star Hotel \"").concat(this.name, "\" at ").concat(this.address, "!"));
+        if (onlyComfort) {
+            this.printRooms(15);
+        }
+        else {
+            this.printRooms();
+        }
     };
     return Hotel;
 }());
@@ -88,7 +96,7 @@ var spa1 = new Spa(120, 2, 20, 2);
 var hotel = new Hotel("Oracle", "57th avenue", 4);
 hotel.addRoom(room1);
 hotel.addRoom(room2);
-hotel.printRooms(15);
+hotel.printData(true);
 // //test room objects
 // room1.printData();
 // room2.printData();

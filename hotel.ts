@@ -1,8 +1,8 @@
-// const roomSize = document.getElementById('room-size') as HTMLInputElement;
-// const capacity = document.getElementById('capacity') as HTMLInputElement;
-// const poolSize = document.getElementById('pool-size') as HTMLInputElement;
-// const waterTemp = document.getElementById('watertemp') as HTMLInputElement;
-// const btn = document.querySelector('button') as HTMLButtonElement;
+const roomSize = document.getElementById('room-size') as HTMLInputElement;
+const capacity = document.getElementById('capacity') as HTMLInputElement;
+const poolSize = document.getElementById('pool-size') as HTMLInputElement;
+const waterTemp = document.getElementById('watertemp') as HTMLInputElement;
+const btn = document.querySelector('button') as HTMLButtonElement;
 
 class Hotel {
     public readonly name: string;
@@ -21,7 +21,7 @@ class Hotel {
     }
 
     //printing all information of rooms if comfort level is higher than 15
-    printRooms(minComfort?: number) :void {
+    private printRooms(minComfort?: number) :void {
         for (let room of this.rooms) {
             if(room.comfort() > minComfort || 
                minComfort === undefined ) {
@@ -30,8 +30,15 @@ class Hotel {
        }
     }
 
+    //if comfort is true only rooms that are higer than level 15 will be printed 
     public printData(onlyComfort?: boolean): void {
+        console.log(`Welcome to ${this.stars} star Hotel "${this.name}" at ${this.address}!`);        
 
+        if(onlyComfort) {
+            this.printRooms(15);
+        } else {
+            this.printRooms();
+        }
     } 
 }
 
@@ -91,7 +98,7 @@ const hotel: Hotel = new Hotel("Oracle", "57th avenue", 4);
 
 hotel.addRoom(room1)
 hotel.addRoom(room2)
-hotel.printRooms(15);
+hotel.printData(true);
 
 // //test room objects
 // room1.printData();
